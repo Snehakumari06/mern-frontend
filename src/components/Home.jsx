@@ -76,39 +76,73 @@
 
 
 //create a simple cricket score counter using useState hook
-import { useState } from 'react';
-export default function Home(){ 
+// import { useState } from 'react';
+// export default function Home(){ 
 
-    const [scores, setRun] = useState(0);    //variable=run, value=0, function=setRun
+//     const [scores, setRun] = useState(0);    //variable=run, value=0, function=setRun
 
-    const [wickets, setWicket] = useState(0); //variable=wicket, value=0, function=setWicket
-    const [message, setMessage] = useState("");
+//     const [wickets, setWicket] = useState(0); //variable=wicket, value=0, function=setWicket
+//     const [message, setMessage] = useState("");
 
-    const run = () => {
-        setRun(scores + 1); 
-        setMessage("Well done..")
+//     const run = () => {
+//         setRun(scores + 1); 
+//         setMessage("Well done..")
 
-    }
+//     }
 
-    const wicket = () => {
-        setWicket(wickets + 1)
-        if(wickets >= 9) setMessage("All out");
-        else setMessage("Wicket taken..");
+//     const wicket = () => {
+//         setWicket(wickets + 1)
+//         if(wickets >= 9) setMessage("All out");
+//         else setMessage("Wicket taken..");
         
+//     }
+
+// return(
+//     <>
+//     <p>{scores}</p>
+//     <button onClick={run}>Run</button>
+//     <p>{wickets}</p>
+//     <button onClick={wicket}>Wicket</button>
+//     <p>{message}</p>
+//     </>
+// )
+
+// }
+
+
+//-------------------------------------------------------------------------------------------------
+
+import { useState } from "react";
+export default function Home() {
+  const [wicket, setWicket] = useState(0);
+  const [run, setRun] = useState(0);
+  const [message, setMessage] = useState();
+  const incrementRun = () => {
+    if (wicket < 10) {
+      setRun(run + 1);
+      setMessage("Well Done");
     }
+  };
+  const incrementWicket = () => {
+    if (wicket < 10) {
+      setWicket(wicket + 1);
+      setMessage("Better Luck Next Time");
+    } else {
+      setMessage("Game Over");
+    }
+  };
 
-return(
+  return (
     <>
-    <p>{scores}</p>
-    <button onClick={run}>Run</button>
-    <p>{wickets}</p>
-    <button onClick={wicket}>Wicket</button>
-    <p>{message}</p>
+      <button onClick={incrementRun}>Run</button>
+      <h3>{run}</h3>
+      <button onClick={incrementWicket}>Wicket</button>
+      <h3>{wicket}</h3>
+      <hr />
+      {message}
     </>
-)
-
+  );
 }
-
 
 //-------------------------------------------------------------------------------------------------
 
